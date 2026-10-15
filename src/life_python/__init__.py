@@ -1,3 +1,6 @@
+def add_glider(board, glider):
+    board.update((row,col) for row, col in glider)
+
 def get_neighbors(cell):
     offsets = [-1,0,1]
     return [(cell[0]+dx, cell[1]+dy) for dy in offsets for dx in offsets if (dx, dy) != (0, 0)]
@@ -24,6 +27,8 @@ def simulation(iterations, board):
     return board
 
 def main():
+    board = set()
     initial_glider = [(0,1), (1,2), (2,0), (2,1), (2,2)]
-    final_glider = simulation(100000, initial_glider)
-    print_cells(final_glider)
+    add_glider(board, initial_glider)
+    final_board = simulation(1, board)
+    print_cells(final_board)
